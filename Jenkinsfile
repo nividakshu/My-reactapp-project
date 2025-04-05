@@ -30,7 +30,6 @@ pipeline {
         stage('Pull the pushed image and Deploy to EC2') {
             steps {
                 sh '''
-                chmod 400 Nivetha.pem
                 scp -o StrictHostKeyChecking=no -i /var/lib/jenkins/.ssh/Nivetha.pem deploy.sh ubuntu@54.83.108.71:/home/ubuntu/
                 ssh -o StrictHostKeyChecking=no -i /var/lib/jenkins/.ssh/Nivetha.pem ubuntu@54.83.108.71 "BRANCH_NAME=$BRANCH_NAME bash deploy.sh"
                 '''
